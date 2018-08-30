@@ -1,7 +1,8 @@
-package cz.kaserdan.example
+package cz.kaserdan.example.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import cz.kaserdan.example.R
 import cz.kaserdan.example.ui.list.ListFragment
 
 class MainActivity : AppCompatActivity() {
