@@ -11,7 +11,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBuildersModule {
 
-    @ActivityScope
     @ContributesAndroidInjector
     abstract fun contributeListFragment(): ListFragment
 

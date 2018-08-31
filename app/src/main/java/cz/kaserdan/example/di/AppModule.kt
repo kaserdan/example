@@ -23,9 +23,7 @@ abstract class AppModule {
     @ContributesAndroidInjector(modules = [(FragmentBuildersModule::class)])
     abstract fun contributeMainActivity(): MainActivity
 
-
     @Binds
     abstract fun application(app: Application): Context
-
 
 }

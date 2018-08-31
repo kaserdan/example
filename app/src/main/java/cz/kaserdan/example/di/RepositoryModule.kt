@@ -2,6 +2,7 @@ package cz.kaserdan.example.di
 
 import dagger.Binds
 import dagger.Module
+import javax.inject.Singleton
 
 /**
  * Created by egold
@@ -9,8 +10,8 @@ import dagger.Module
 @Module
 abstract class RepositoryModule {
 
+    @Singleton
     @Binds
-    @ApplicationScope
     internal abstract fun bindAlarmRepository(alarmDatabaseRepository: AlarmDatabaseRepository): AlarmRepository
 
 }
