@@ -7,24 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cz.kaserdan.example.R
+import cz.kaserdan.example.di.Injectable
+import cz.kaserdan.example.ui.ViewModelFactory
+import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), Injectable {
+
+    @Inject
+    protected lateinit var viewModelFactory: ViewModelFactory
+
+    val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(ListViewModel::class.java) }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+        inflater.inflate(R.layout.list_fragment, container, false)
+
+    override fun onStart() {
+        super.onStart()
+
+    }
 
     companion object {
         fun newInstance() = ListFragment()
-    }
-
-    private lateinit var viewModel: ListViewModel
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.list_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

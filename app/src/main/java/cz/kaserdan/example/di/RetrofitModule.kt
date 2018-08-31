@@ -1,10 +1,13 @@
 package cz.kaserdan.example.di
 
 import cz.kaserdan.example.model.api.TransactionService
+import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+@Module
 class RetrofitModule {
 
     @Singleton

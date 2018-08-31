@@ -13,7 +13,7 @@ import dagger.multibindings.Multibinds
 
 
 @Module(
-        includes = [AndroidInjectionModule::class, ViewModelModule::class, RepositoryModule::class]
+        includes = [AndroidInjectionModule::class, ViewModelModule::class, RepositoryModule::class, RetrofitModule::class]
 )
 abstract class AppModule {
 

@@ -9,4 +9,6 @@ data class TransactionItem(val id: Int, val amountInAccountCurrency: Int, val di
         INCOMING, OUTGOING
     }
 
+    class TransactionFilter(val direction: Direction?)
+
 }

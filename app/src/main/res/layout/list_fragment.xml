@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.list.ListFragment">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ListFragment"/>
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_transaction" />
 
 </FrameLayout>

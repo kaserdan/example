@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 interface TransactionRepository {
 
-    fun fetchTransactions(): Observable<List<TransactionItem>>
+    fun fetchTransactions(cancelPrevious: Boolean): Observable<List<TransactionItem>>
 
     fun fetchTransactionInfo(transactionId: Int): Observable<TransactionInfo>
 
