@@ -6,9 +6,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jakewharton.rxbinding2.view.RxView
 import cz.kaserdan.example.R
 import cz.kaserdan.example.di.Injectable
+import cz.kaserdan.example.model.entity.TransactionItem
 import cz.kaserdan.example.ui.ViewModelFactory
+import kotlinx.android.synthetic.main.list_fragment.*
 import javax.inject.Inject
 
 class ListFragment : Fragment(), Injectable {
@@ -23,7 +26,7 @@ class ListFragment : Fragment(), Injectable {
 
     override fun onStart() {
         super.onStart()
-
+        RxView.clicks(reloadBtn).map { TransactionItem.TransactionFilter() }.subscribe(viewModel.loadTransactionsFiltered)
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package cz.kaserdan.example.ui.list
 
+import cz.kaserdan.example.model.entity.TransactionItem
 import cz.kaserdan.example.ui.MviResult
 
 sealed class ListActionResult : MviResult<ListViewState>() {
@@ -8,25 +9,22 @@ sealed class ListActionResult : MviResult<ListViewState>() {
 
         object Loading : LoadItems() {
 
-            override fun reduce(previousState: ListViewState): ListViewState {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun reduce(previousState: ListViewState): ListViewState =
+                previousState.copy(isProgress = true, isError = false)
 
         }
 
         object Error : LoadItems() {
 
-            override fun reduce(previousState: ListViewState): ListViewState {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun reduce(previousState: ListViewState): ListViewState =
+                previousState.copy(isProgress = false, isError = true)
 
         }
 
-        object Success : LoadItems() {
+        data class Success(val items: List<TransactionItem>) : LoadItems() {
 
-            override fun reduce(previousState: ListViewState): ListViewState {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun reduce(previousState: ListViewState): ListViewState =
+                previousState.copy(isProgress = false, isError = false, items = items)
 
         }
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Example</string>
+    <string name="label_reload">Reload</string>
+    <string name="label_filter">Filter</string>
+    <string name="label_filter_all">All</string>
+    <string name="label_incomming">Incomming</string>
+    <string name="label_outgoing">Outgoing</string>
 </resources>
