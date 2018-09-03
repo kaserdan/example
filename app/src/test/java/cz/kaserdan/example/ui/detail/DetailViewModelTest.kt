@@ -1,4 +1,4 @@
-package cz.kaserdan.example.ui.list
+package cz.kaserdan.example.ui.detail
 
 import cz.kaserdan.example.model.entity.TransactionInfo
 import cz.kaserdan.example.model.entity.TransactionItem
@@ -14,7 +14,7 @@ import org.junit.Test
 import java.io.IOException
 
 
-class ListViewModelTest {
+class DetailViewModelTest {
 
     @Before
     fun setupClass() {
@@ -26,43 +26,21 @@ class ListViewModelTest {
 
     @Test
     fun testErrorFromRepository() {
-        val navigator = object : NavigationRouter {
-            override fun showTransactionDetail(transactionItem: TransactionItem): Completable = Completable.complete()
-        }
+        val item = TransactionItem(0, 0, TransactionItem.Direction.OUTGOING)
         val repository = object : TransactionRepository {
             override fun fetchTransactions(filter: TransactionItem.TransactionFilter?): Observable<List<TransactionItem>> =
+                    Observable.empty()
+
+            override fun fetchTransactionInfo(transactionId: Int): Observable<TransactionInfo> =
                     Observable.error(IOException("Test exception"))
 
-            override fun fetchTransactionInfo(transactionId: Int): Observable<TransactionInfo> = Observable.empty()
-
         }
-        val listActionProcessorHolder = ListActionProcessorHolder(repository, navigator)
-        val viewModel = ListViewModel(listActionProcessorHolder)
-        viewModel.loadTransactionsFiltered.accept(TransactionItem.TransactionFilter())
+        val listActionProcessorHolder = DetailActionProcessorHolder(repository)
+        val viewModel = DetailViewModel(listActionProcessorHolder)
+        viewModel.loadTransactionInfo.accept(item)
         viewModel.stateOutput.test()
                 .awaitCount(1)
-                .assertValue{it.isError}
-    }
-
-    @Test
-    fun testNavigation() {
-        val itemToNavigate = TransactionItem(0,0,TransactionItem.Direction.OUTGOING)
-        var navigatedToItem = false
-        val navigator = object : NavigationRouter {
-            override fun showTransactionDetail(transactionItem: TransactionItem): Completable =
-                    Completable.fromAction { navigatedToItem = itemToNavigate == transactionItem }
-        }
-        val repository = object : TransactionRepository {
-            override fun fetchTransactions(filter: TransactionItem.TransactionFilter?): Observable<List<TransactionItem>> =
-                    Observable.error(IOException("Test exception"))
-
-            override fun fetchTransactionInfo(transactionId: Int): Observable<TransactionInfo> = Observable.empty()
-
-        }
-        val listActionProcessorHolder = ListActionProcessorHolder(repository, navigator)
-        val viewModel = ListViewModel(listActionProcessorHolder)
-        viewModel.itemClick.accept(itemToNavigate)
-        assert(navigatedToItem)
+                .assertValue { it.isError }
     }
 
 }
