@@ -5,4 +5,7 @@
     <string name="label_filter_all">All</string>
     <string name="label_incomming">Incomming</string>
     <string name="label_outgoing">Outgoing</string>
+    <string name="label_account_number">account number:</string>
+    <string name="label_bank_code">bank code:</string>
+    <string name="label_account_name">account name:</string>
 </resources>

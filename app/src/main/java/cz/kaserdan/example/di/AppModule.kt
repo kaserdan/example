@@ -12,6 +12,7 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.Multibinds
 
 
+@Suppress("unused")
 @Module(
     includes = [AndroidInjectionModule::class, ViewModelModule::class, RepositoryModule::class, RetrofitModule::class,
         NavigationModule::class]

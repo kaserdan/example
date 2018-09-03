@@ -9,29 +9,55 @@
     tools:context=".ui.list.ListFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp">
 
         <TextView
-            android:id="@+id/filterAllRB"
+            android:id="@+id/filterAllTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/background_filter"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
             android:text="@string/label_filter_all" />
 
         <TextView
-            android:id="@+id/filterIncomingRB"
+            android:id="@+id/filterIncomingTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:text="@string/label_incomming" />
 
         <TextView
-            android:id="@+id/filterOutgoingRB"
+            android:id="@+id/filterOutgoingTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
             android:text="@string/label_outgoing" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -50,7 +76,16 @@
             android:id="@+id/reloadBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_reload" />
+            android:layout_gravity="center"
+            android:text="@string/label_reload"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
     </FrameLayout>
 

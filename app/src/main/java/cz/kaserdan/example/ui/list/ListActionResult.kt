@@ -7,10 +7,10 @@ sealed class ListActionResult : MviResult<ListViewState>() {
 
     sealed class LoadItems : ListActionResult() {
 
-        object Loading : LoadItems() {
+        data class Loading(val filter: TransactionItem.TransactionFilter) : LoadItems() {
 
             override fun reduce(previousState: ListViewState): ListViewState =
-                previousState.copy(isProgress = true, isError = false)
+                previousState.copy(isProgress = true, isError = false, items = arrayListOf(), selectedFilter = filter)
 
         }
 

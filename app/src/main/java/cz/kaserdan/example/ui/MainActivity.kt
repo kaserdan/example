@@ -27,19 +27,20 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-            replaceFragment(ListFragment())
+            replaceFragment(ListFragment.newInstance(), false)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        navigationCommander.replaceFragment.subscribe { fragment -> replaceFragment(fragment) }.addTo(AutoDisposable(lifecycle))
+        navigationCommander.replaceFragment.subscribe { fragment -> replaceFragment(fragment, true) }.addTo(AutoDisposable(lifecycle))
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, fragment)
-            .commitNow()
+                .replace(R.id.container, fragment)
+                .apply { if (addToBackStack) addToBackStack(null) }
+                .commit()
     }
 
 }

@@ -6,9 +6,7 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-/**
- * Created by egold
- */
+@Suppress("unused")
 @Module
 abstract class RepositoryModule {
 

@@ -8,9 +8,6 @@ import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 
-/**
- * Created by kaserdan on 23.10.17.
- */
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent : AndroidInjector<ExampleApp> {

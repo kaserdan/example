@@ -24,10 +24,10 @@ class ListViewModel @Inject constructor(processor: ListActionProcessorHolder) : 
             processedInputs.add(compose(processor.showTransactionInfoProcessor))
         }
         stateOutput = Observable.merge(processedInputs)
-            .scan(ListViewState(), { previousState, result -> result.reduce(previousState) })
-            .replay(1)
-            .autoConnect(0, { it.toDisposeBag() })
-            .observeOn(AndroidSchedulers.mainThread())
+                .scan(ListViewState()) { previousState, result -> result.reduce(previousState) }
+                .replay(1)
+                .autoConnect(0) { it.toDisposeBag() }
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
 

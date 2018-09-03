@@ -13,9 +13,12 @@ class TransactionApiRepository @Inject constructor(private val transactionServic
 
     override fun fetchTransactions(filter: TransactionItem.TransactionFilter?): Observable<List<TransactionItem>> {
         listDisposable?.takeIf { !it.isDisposed }?.dispose()
-        return transactionService.listAlltransactions()
-            .map { list -> filter?.let { filter -> list.filter { it.direction == filter.direction } } ?: list }
-            .doOnSubscribe { listDisposable = it }
+        return transactionService.listAllTransactions()
+                .map { it.items }
+                .map { list ->
+                    filter?.direction?.let { direction -> list.filter { it.direction == direction } } ?: list
+                }
+                .doOnSubscribe { listDisposable = it }
     }
 
     override fun fetchTransactionInfo(transactionId: Int): Observable<TransactionInfo> = transactionService.transactionInfo(transactionId)
